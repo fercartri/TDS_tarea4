@@ -10,9 +10,14 @@ public class Persona {
      * @param apellido el apellido de dicha persona
      * @throws IllegalArgumentException si nombre es null
      * @throws IllegalArgumentException si apellido es null
+     * @throws IllegalArgumentException si nombre es la cadena vacia
+     * @throws IllegalArgumentException si apellido es la cadena vacia
      */
     public Persona(String nombre, String apellido){
         if(nombre == null || apellido == null)
+            throw new IllegalArgumentException();
+
+        if(nombre.length() < 1 || apellido.length() < 1)
             throw new IllegalArgumentException();
 
         this.nombre = nombre;
@@ -38,9 +43,14 @@ public class Persona {
     /**
      * Modifica el nombre de la persona
      * @param nombre el nuevo nombre
+     * @throws IllegalArgumentException si nombre es null
+     * @throws IllegalArgumentException si nombre es la cadena vacia
      */
     public void setNombre(String nombre){
         if(nombre == null)
+            throw new IllegalArgumentException();
+
+        if(nombre.length() < 1)
             throw new IllegalArgumentException();
 
         this.nombre = nombre;
@@ -49,12 +59,16 @@ public class Persona {
     /**
      * Modifica el apellido de la persona
      * @param apellido el nuevo apellido
+     * @throws IllegalArgumentException si apellido es null
+     * @throws IllegalArgumentException si apellido es la cadena vacia
      */
     public void setApellido(String apellido){
         if(apellido == null)
             throw new IllegalArgumentException();
 
+        if(apellido.length() < 1)
+            throw new IllegalArgumentException();
+
         this.apellido = apellido;
     }
-
 }

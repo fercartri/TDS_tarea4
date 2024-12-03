@@ -2,6 +2,8 @@ package uva.tds;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,13 +15,15 @@ class AgendaTest {
 	
 	@BeforeEach
 	void setUp() {
-		agenda=new Agenda();
+		agenda = new Agenda();
 		p = new Persona("n", "a");
 	}
 
 	@Test
 	void testAddContactoDatosNulos() {
-		assertEquals(1,agenda.addContacto(null));
+		assertThrows(IllegalArgumentException.class, () -> {
+			agenda.addContacto(null);
+		});
 	}
 	
 	@Test
