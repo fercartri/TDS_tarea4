@@ -9,14 +9,12 @@ import org.junit.jupiter.api.Test;
 class AgendaTest {
 	
 	Agenda agenda;
-	String[] datosContacto;
+	Persona p;
 	
 	@BeforeEach
 	void setUp() {
 		agenda=new Agenda();
-		datosContacto=new String[2];
-		datosContacto[0]="n";
-		datosContacto[1]="a";
+		p = new Persona("n", "a");
 	}
 
 	@Test
@@ -25,38 +23,33 @@ class AgendaTest {
 	}
 	
 	@Test
-	void testAddContactoDatosSizeIncorrecta() {
-		assertEquals(2,agenda.addContacto(new String[3]));
-	}
-	
-	@Test
 	void testAddContactoNombreNulo() {
-		datosContacto[0]=null;
-		assertEquals(3,agenda.addContacto(datosContacto));
+		p.setNombre(null);
+		assertEquals(3,agenda.addContacto(p));
 	}
 	
 	@Test
 	void testAddContactoNombreVacio() {
-		datosContacto[0]="";
-		assertEquals(3,agenda.addContacto(datosContacto));
+		p.setNombre("");
+		assertEquals(3,agenda.addContacto(p));
 	}
 	
 	@Test
 	void testAddContactoApellidoNulo() {
-		datosContacto[1]=null;
-		assertEquals(4,agenda.addContacto(datosContacto));
+		p.setApellido(null);
+		assertEquals(4,agenda.addContacto(p));
 	}
 	
 	@Test
 	void testAddContactoApellidoVacio() {
-		datosContacto[1]="";
-		assertEquals(4,agenda.addContacto(datosContacto));
+		p.setApellido("");
+		assertEquals(4,agenda.addContacto(p));
 	}
 	
 	@Test
 	void testAddContactoValido() {
-		assertEquals(0,agenda.addContacto(datosContacto));
-		assertEquals("a",agenda.getContacto("n")[1]);
+		assertEquals(0,agenda.addContacto(p));
+		assertEquals("a",agenda.getContacto("n").getApellido());
 	}
 	
 	@Test
@@ -66,15 +59,15 @@ class AgendaTest {
 	
 	@Test
 	void testGetContactoNoExistenteNoVacio() {
-		agenda.addContacto(datosContacto);
+		agenda.addContacto(p);
 		assertNull(agenda.getContacto("p"));
 	}
 	
 	@Test
 	void testModificarContactoValido() {
-		agenda.addContacto(datosContacto);
+		agenda.addContacto(p);
 		assertEquals(0,agenda.modificarApellido("n", "p"));
-		assertEquals("p",agenda.getContacto("n")[1]);
+		assertEquals("p",agenda.getContacto("n").getApellido());
 	}
 	
 	@Test
@@ -84,7 +77,7 @@ class AgendaTest {
 	
 	@Test
 	void testModificarContactoNoExistenteNoVacio() {
-		agenda.addContacto(datosContacto);
+		agenda.addContacto(p);
 		assertEquals(1,agenda.modificarApellido("l", "p"));
 	}
 

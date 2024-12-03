@@ -7,56 +7,37 @@ import java.util.ArrayList;
  * apellido
  * 
  * @author marcorr
+ * Refactorización: @author fercarm
  *
  */
 public class Agenda {
 
-	private ArrayList<String[]> contactos;
+	private ArrayList<Persona> contactos;
 
 	/**
 	 * Método de creación de una agenda
-	 * 
 	 */
 	public Agenda() {
-		this.contactos=new ArrayList<>();
+		this.contactos = new ArrayList<>();
 	}
 
 	/**
 	 * Añade un contacto a la agenda
-	 * @param datosContacto información del contacto. En la posicion 0, se
-	 *                      proporciona el nombre en la posición 1 se proporciona el
-	 *                      apellido
+	 * @param persona la persona a añadir
 	 * @return 0 si se ha podido añadir el contacto, 1 si datosContacto es nulo, 2 si 
 	 * datosContacto no tiene tamaño 2, 3 si el nombre es nulo o vacío, 4 si el apellido
 	 * es nulo o vacío
 	 */
-	public int addContacto(String[] datosContacto) {
+	public int addContacto(Persona persona) {
 		int result = 0;
-		if (datosContacto == null) {
+		
+		if(persona == null){
 			result = 1;
-		} else {
-			if (datosContacto.length != 2) {
-				result = 2;
-			} else {
-				if (datosContacto[0] == null) {
-					result = 3;
-				} else {
-					if (datosContacto[0].isEmpty()) {
-						result = 3;
-					} else {
-						if (datosContacto[1] == null) {
-							result = 4;
-						} else {
-							if (datosContacto[1].isEmpty()) {
-								result = 4;
-							}else {
-								this.contactos.add(datosContacto);
-							}
-						}
-					}
-				}
-			}
 		}
+		else{
+			this.contactos.add(persona);
+		}
+		
 		
 		return result;
 	}
@@ -64,11 +45,11 @@ public class Agenda {
 	/**
 	 * Obtiene un contacto de la agenda que coincida con el nombre proporcionado
 	 * @param nombre el nombre del contacto a buscar
-	 * @return El contacto buscado (nombre y apellido) o nulo si no existe
+	 * @return una Persona buscada o nulo si no existe
 	 */
-	public String[] getContacto(String nombre) {
+	public Persona getContacto(String nombre) {
 		for(int i=0;i<this.contactos.size();i++) {
-			if(this.contactos.get(i)[0].equals(nombre)) {
+			if(this.contactos.get(i).getNombre().equals(nombre)) {
 				return this.contactos.get(i);
 			}
 		}
@@ -84,8 +65,8 @@ public class Agenda {
 	 */
 	public int modificarApellido(String nombre,String nuevoApellido) {
 		for(int i=0;i<this.contactos.size();i++) {
-			if(this.contactos.get(i)[0].equals(nombre)) {
-				this.contactos.get(i)[1]=nuevoApellido;
+			if(this.contactos.get(i).getApellido().equals(nombre)) {
+				this.contactos.get(i).setApellido(nuevoApellido);
 				return 0;
 			}
 		}
