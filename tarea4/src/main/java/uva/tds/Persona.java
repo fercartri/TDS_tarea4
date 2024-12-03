@@ -1,6 +1,11 @@
 package uva.tds;
 
+/**
+ * Clase que representa una persona con nombre y apellido
+ * @author fercarm
+ */
 public class Persona {
+    
     private String nombre;
     private String apellido;
 

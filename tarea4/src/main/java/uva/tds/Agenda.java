@@ -3,12 +3,9 @@ package uva.tds;
 import java.util.ArrayList;
 
 /**
- * Clase que representa un contacto de una agenda con información de su nombre
- * apellido
- * 
+ * Clase que representa una agenda de contactos con nombre y apellido
  * @author marcorr
  * Refactorización: @author fercarm
- *
  */
 public class Agenda {
 
