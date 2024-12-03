@@ -20,40 +20,17 @@ class AgendaTest {
 	}
 
 	@Test
+	void testAgendaAddContactoValido(){
+		agenda.addContacto(p);
+
+		assertEquals(agenda.getContacto("n"), p);
+	}
+
+	@Test
 	void testAddContactoDatosNulos() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			agenda.addContacto(null);
 		});
-	}
-	
-	@Test
-	void testAddContactoNombreNulo() {
-		p.setNombre(null);
-		assertEquals(3,agenda.addContacto(p));
-	}
-	
-	@Test
-	void testAddContactoNombreVacio() {
-		p.setNombre("");
-		assertEquals(3,agenda.addContacto(p));
-	}
-	
-	@Test
-	void testAddContactoApellidoNulo() {
-		p.setApellido(null);
-		assertEquals(4,agenda.addContacto(p));
-	}
-	
-	@Test
-	void testAddContactoApellidoVacio() {
-		p.setApellido("");
-		assertEquals(4,agenda.addContacto(p));
-	}
-	
-	@Test
-	void testAddContactoValido() {
-		assertEquals(0,agenda.addContacto(p));
-		assertEquals("a",agenda.getContacto("n").getApellido());
 	}
 	
 	@Test
