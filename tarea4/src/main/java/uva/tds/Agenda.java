@@ -36,35 +36,31 @@ public class Agenda {
 	/**
 	 * Obtiene un contacto de la agenda que coincida con el nombre proporcionado
 	 * @param nombre el nombre del contacto a buscar
-	 * @return una Persona buscada o nulo si no existe
+	 * @return la persona buscada
+	 * @throws IllegalArgumentException si no existe ninguna persona con dicho nombre en la agenda
 	 */
 	public Persona getContacto(String nombre) {
-		for(int i=0;i<this.contactos.size();i++) {
-			if(this.contactos.get(i).getNombre().equals(nombre)) {
-				return this.contactos.get(i);
-			}
-		}
-		return null;
+		for(Persona p : contactos)
+			if(p.getNombre().equals(nombre))
+				return p;
+
+		throw new IllegalArgumentException();
 	}
 	
 	/**
 	 * Modifica el apellido del contacto con el nombre proporcionado
 	 * @param nombre El nombre del contacto a modificar
 	 * @param nuevoApellido El nuevo apellido a asignar
-	 * @throws IllegalArgumentException si no existe una persona en la agenda con dicho nombre
+	 * @throws IllegalArgumentException si no existe ninguna persona con dicho nombre en la agenda
 	 */
 	public void modificarApellido(String nombre, String nuevoApellido) {
-		for(int i=0;i<this.contactos.size();i++) {
-			if(this.contactos.get(i).getApellido().equals(nombre)) {
-				this.contactos.get(i).setApellido(nuevoApellido);
+		for(Persona p : contactos){
+			if(p.getNombre().equals(nombre)){
+				p.setApellido(nuevoApellido);
 				return;
 			}
 		}
 
 		throw new IllegalArgumentException();
 	}
-	
-	
-
-
 }
