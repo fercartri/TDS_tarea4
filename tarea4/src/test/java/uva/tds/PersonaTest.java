@@ -94,5 +94,4 @@ public class PersonaTest {
             p.setApellido("");
         });
     }
-    
 }

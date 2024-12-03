@@ -53,7 +53,7 @@ public class Agenda {
 	 * @param nuevoApellido El nuevo apellido a asignar
 	 * @throws IllegalArgumentException si no existe una persona en la agenda con dicho nombre
 	 */
-	public void modificarApellido(String nombre,String nuevoApellido) {
+	public void modificarApellido(String nombre, String nuevoApellido) {
 		for(int i=0;i<this.contactos.size();i++) {
 			if(this.contactos.get(i).getApellido().equals(nombre)) {
 				this.contactos.get(i).setApellido(nuevoApellido);
