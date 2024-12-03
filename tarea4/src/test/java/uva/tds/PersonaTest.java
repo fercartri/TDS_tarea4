@@ -23,7 +23,21 @@ public class PersonaTest {
     @Test
     void testPersonaConstructorNoValidoApellidoNull(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Persona p = new Persona("A", null);
+            Persona p = new Persona("N", null);
+        });
+    }
+
+    @Test
+    void testPersonaConstructorNoValidoNombreVacio(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Persona p = new Persona("", "A");
+        });
+    }
+
+    @Test
+    void testPersonaConstructorNoValidoApellidoVacio(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Persona p = new Persona("N", "");
         });
     }
 
@@ -46,6 +60,15 @@ public class PersonaTest {
     }
 
     @Test
+    void testPersonaSetNombreNoValidoVacio(){
+        Persona p = new Persona("N", "A");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            p.setNombre("");
+        });
+    }
+
+    @Test
     void testPersonaSetApellidoValido(){
         Persona p = new Persona("N", "A");
 
@@ -60,6 +83,15 @@ public class PersonaTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             p.setApellido(null);
+        });
+    }
+
+    @Test
+    void testPersonaSetApellidoNoValidoVacio(){
+        Persona p = new Persona("N", "A");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            p.setApellido("");
         });
     }
 }
